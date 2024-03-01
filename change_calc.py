@@ -18,8 +18,7 @@ def get_exact_change(cents: int) -> list[int]:
 def print_change(change: list[int]) -> None:
     """Format the change nicely and print it"""
     if len(change) != 4:
-        print("Invalid change")
-        return
+        raise ValueError("Invalid change")
     output = ""
     for amount, coin in zip(
         change,
@@ -30,12 +29,9 @@ def print_change(change: list[int]) -> None:
             ("pennies", "penny"),
         ),
     ):
-        if amount == 1:
-            output += f"{amount} {coin[1]}\n"
-        elif amount > 1:
-            output += f"{amount} {coin[0]}\n"
-        elif amount == 0:
-            continue
+        if amount < 0:
+            raise ValueError("Invalid amount")
+        output += f"{amount} {coin[int(amount == 1)]}\n"
     print(output)
 
 
