@@ -15,8 +15,8 @@ def get_exact_change(cents: int) -> list[int]:
     return change
 
 
-def print_change(change: list[int]) -> None:
-    """Format the change nicely and print it"""
+def format_change(change: list[int]) -> str:
+    """Format the change nicely"""
     if len(change) != 4:
         raise ValueError("Invalid change")
     output = ""
@@ -32,8 +32,12 @@ def print_change(change: list[int]) -> None:
         if amount < 0:
             raise ValueError("Invalid amount")
         output += f"{amount} {coin[int(amount == 1)]}\n"
-    print(output)
+    return output
 
 
 if __name__ == "__main__":
-    print_change(get_exact_change(int(input("Enter the amount of change in cents: "))))
+    print(
+        format_change(
+            get_exact_change(int(input("Enter the amount of change in cents: ")))
+        )
+    )
