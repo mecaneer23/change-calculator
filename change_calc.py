@@ -31,6 +31,8 @@ def format_change(change: list[int]) -> str:
     ):
         if amount < 0:
             raise ValueError("Invalid amount")
+        if amount == 0:
+            continue
         output += f"{amount} {coin[int(amount == 1)]}\n"
     return output
 
